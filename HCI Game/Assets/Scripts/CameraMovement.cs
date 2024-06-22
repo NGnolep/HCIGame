@@ -14,10 +14,10 @@ public class CameraMovement : MonoBehaviour
     private void Update()
     {
         //room camera
-        transform.position = Vector3.SmoothDamp(transform.position, new Vector3(currentPosX, transform.position.y, transform.position.z), ref velocity, speed);
+        //transform.position = Vector3.SmoothDamp(transform.position, new Vector3(currentPosX, transform.position.y, transform.position.z), ref velocity, speed);
 
         //follow player
-        //transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z);
+        transform.position = new Vector3(player.position.x, transform.position.y, transform.position.z);
     }
 
     public void MovetoNewRoom(Transform _newRoom)
