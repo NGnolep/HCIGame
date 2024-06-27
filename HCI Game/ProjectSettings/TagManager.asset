@@ -4,10 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Traps
-  - DeathZone
-  - Box
+  - Audio
   layers:
   - Default
   - TransparentFX
