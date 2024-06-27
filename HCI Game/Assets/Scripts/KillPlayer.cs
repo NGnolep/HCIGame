@@ -16,12 +16,13 @@ public class KillPlayer : MonoBehaviour
     }
     void dead()
     {
+        //player.SetActive(false);
         Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Traps")
+        if (collision.CompareTag("Traps") || collision.CompareTag("DeathZone"))
         {
             over = true;
             dead();
