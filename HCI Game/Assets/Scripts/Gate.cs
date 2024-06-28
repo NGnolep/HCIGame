@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
-    public bool isOpen = false;
+    private bool isOpen = false;
 
     public void OpenGate()
     {

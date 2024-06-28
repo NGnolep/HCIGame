@@ -37,7 +37,7 @@ public class PressurePlate : MonoBehaviour
             // Perform actions when deactivated (e.g., close door)
             if (gate != null && gate.isOpen)
             {
-               // gate.CloseGate();
+                gate.CloseGate();
             }
             if (platform != null && platform.isDown)
             {
