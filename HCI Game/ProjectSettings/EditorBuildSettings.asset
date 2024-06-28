@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/levels/level 2.unity
     guid: 11d2309c6d376be41b5e8d8c403f300b
   - enabled: 1
+    path: Assets/levels/Pause Menu.unity
+    guid: ae1bc2462bd25da4a8f88b844f63617e
+  - enabled: 1
+    path: Assets/levels/Game Over.unity
+    guid: ac61c10ce01932e49bd30ed4d1731607
+  - enabled: 0
     path: Assets/levels/Menu after start.unity
     guid: c88687c34e440794bb54fe82936526cc
   m_configObjects: {}
