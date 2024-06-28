@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 202569779773411612}
   - component: {fileID: 3120629085614677201}
-  - component: {fileID: 7242259907093710846}
+  - component: {fileID: 5141687680923356720}
   m_Layer: 0
   m_Name: DeathZone
   m_TagString: DeathZone
@@ -78,7 +78,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.33, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7242259907093710846
+--- !u!114 &5141687680923356720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,6 +87,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3717083064439604402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac2ea585c3219ab44a165028b82a59a4, type: 3}
+  m_Script: {fileID: 11500000, guid: c5b3692dce8c6d54cb38dfe837f2128f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  over: 0

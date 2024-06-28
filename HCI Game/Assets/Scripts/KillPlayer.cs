@@ -10,10 +10,11 @@ public class KillPlayer : MonoBehaviour
     public bool over = false;
     public void gameover()
     {
-        gameOverScreen.SetActive(true);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
 
         over = false;
     }
+
     void dead()
     {
         //player.SetActive(false);

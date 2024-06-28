@@ -20,6 +20,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/levels/Game Over.unity
     guid: ac61c10ce01932e49bd30ed4d1731607
+  - enabled: 1
+    path: Assets/levels/Game Over 2.unity
+    guid: e9ae23014464d3740b31e19e6d4f18fa
+  - enabled: 1
+    path: Assets/levels/clear stage.unity
+    guid: 0acbc3c5d08ef1b4e88c0e0a0f55c075
+  - enabled: 0
+    path: Assets/levels/pause menu 2.unity
+    guid: b68ec58b0ccd0094ca9051d7da8af093
   - enabled: 0
     path: Assets/levels/Menu after start.unity
     guid: c88687c34e440794bb54fe82936526cc
