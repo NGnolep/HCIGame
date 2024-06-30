@@ -4,6 +4,7 @@ using UnityEngine;
 public class Lever : MonoBehaviour
 {
     public Gate gate; // Reference to the Gate script
+    public GameObject laser;
     private bool isActivated = false;
     private Animator leverAnim;
 
@@ -30,6 +31,29 @@ public class Lever : MonoBehaviour
         isActivated = true;
 
         // Notify the gate to open
-        gate.OpenGate();
+        if (gate != null)
+        {
+            gate.OpenGate();
+        }
+        else if (laser != null)
+        {
+            Destroy(laser);
+        }
+        else
+        {
+            Debug.LogWarning("Neither Gate nor Laser GameObject is assigned in the Lever script.");
+        }
+
+
+        /*gate.OpenGate();
+
+        if (laser != null)
+        {
+            Destroy(laser);
+        }
+        else
+        {
+            Debug.LogWarning("Laser GameObject is not assigned in the lever script");
+        }*/
     }
 }
