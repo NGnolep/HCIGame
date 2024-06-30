@@ -961,6 +961,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1770079785470393272, guid: 09c5adf0fa853a743ab358c85f4a2a71, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770079785470393272, guid: 09c5adf0fa853a743ab358c85f4a2a71, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770079785470393272, guid: 09c5adf0fa853a743ab358c85f4a2a71, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770079785470393272, guid: 09c5adf0fa853a743ab358c85f4a2a71, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190335
+      objectReference: {fileID: 0}
     - target: {fileID: 2262975038792108259, guid: 09c5adf0fa853a743ab358c85f4a2a71, type: 3}
       propertyPath: m_SizeDelta.x
       value: 879.6
