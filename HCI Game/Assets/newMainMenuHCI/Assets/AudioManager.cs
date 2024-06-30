@@ -10,6 +10,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip background;
     public AudioClip buttonClick;
     public AudioClip backButtonClick;
+    public AudioClip WallMoving;
+    public AudioClip Saw;
+    public AudioClip GroundCrack;
+    public AudioClip PressurePlate;
+    public AudioClip PlatformMoving;
 
     private void Start()
     {
@@ -17,6 +22,9 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
-    
+    public void PlaySFX(AudioClip clip)
+    {
+        SFXSource.PlayOneShot(clip);
+    }
 
 }

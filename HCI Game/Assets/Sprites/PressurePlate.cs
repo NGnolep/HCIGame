@@ -7,7 +7,12 @@ public class PressurePlate : MonoBehaviour
     public Gate gate;
     public MovingPlatform platform;
     private bool isActivated = false;
+    AudioManager audioManager;
 
+    private void Awake() 
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("OnTriggerEnter2D called with: " + other.tag);
@@ -15,6 +20,8 @@ public class PressurePlate : MonoBehaviour
         {
             Debug.Log("Pressure plate activated by: " + other.tag);
             isActivated = true;
+            audioManager.PlaySFX(audioManager.PressurePlate);
+
             // Perform actions when activated (e.g., open door)
             if (gate != null && !gate.isOpen)
             {

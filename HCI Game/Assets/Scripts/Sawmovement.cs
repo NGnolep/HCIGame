@@ -10,9 +10,16 @@ public class NewBehaviourScript : MonoBehaviour
     public Transform endPoint;
     public float speed = 1.5f;
     int direction = 1;
+    AudioManager audioManager;
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     private void Update()
     {
+        audioManager.PlaySFX(audioManager.Saw);
+        
         Vector2 target = currentMovementTarget();
 
         saw.position = Vector2.Lerp(saw.position, target, speed * Time.deltaTime);

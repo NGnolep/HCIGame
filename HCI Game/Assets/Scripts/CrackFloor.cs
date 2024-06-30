@@ -6,9 +6,11 @@ using UnityEngine;
 public class CrackFloor : MonoBehaviour
 {
     private Animator anima;
+    AudioManager audioManager;
     private void Awake()
     {
-        anima = GetComponent<Animator>();   
+        anima = GetComponent<Animator>();  
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); 
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -17,6 +19,7 @@ public class CrackFloor : MonoBehaviour
         {
             anima.enabled = true;
             anima.Play("crack");
+            audioManager.PlaySFX(audioManager.GroundCrack);
             StartCoroutine(delayCrackAnimation());
 
         }

@@ -7,10 +7,12 @@ public class Lever : MonoBehaviour
     public GameObject laser;
     private bool isActivated = false;
     private Animator leverAnim;
-
+    AudioManager audioManager;
     private void Awake()
     {
         leverAnim = GetComponent<Animator>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
     }
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -29,6 +31,7 @@ public class Lever : MonoBehaviour
         leverAnim.enabled = true;
         leverAnim.Play("lever");// Example rotation, adjust as needed
         isActivated = true;
+        audioManager.PlaySFX(audioManager.PressurePlate);
 
         // Notify the gate to open
         if (gate != null)
