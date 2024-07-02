@@ -20,6 +20,7 @@ public class Lever : MonoBehaviour
         {
             if (!isActivated)
             {
+                audioManager.PlaySFX(audioManager.PressurePlate);
                 ActivateLever();
             }
         }
@@ -31,7 +32,7 @@ public class Lever : MonoBehaviour
         leverAnim.enabled = true;
         leverAnim.Play("lever");// Example rotation, adjust as needed
         isActivated = true;
-        audioManager.PlaySFX(audioManager.PressurePlate);
+        
 
         // Notify the gate to open
         if (gate != null)

@@ -9,7 +9,17 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 upPosition;
     public float transitionDuration = 0.1f; // Duration for the platform to move
 
+    AudioManager audioManager;
     private Coroutine currentCoroutine = null;
+    private AudioSource platformAudioSource;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        platformAudioSource = gameObject.AddComponent<AudioSource>();
+        platformAudioSource.clip = audioManager.PlatformMoving;
+        platformAudioSource.loop = true;
+    }
 
     void Start()
     {
@@ -25,6 +35,7 @@ public class MovingPlatform : MonoBehaviour
             {
                 StopCoroutine(currentCoroutine);
             }
+            platformAudioSource.Play();
             currentCoroutine = StartCoroutine(MovePlatform(downPosition));
             isDown = true;
         }
@@ -39,6 +50,7 @@ public class MovingPlatform : MonoBehaviour
             {
                 StopCoroutine(currentCoroutine);
             }
+            platformAudioSource.Play();
             currentCoroutine = StartCoroutine(MovePlatform(upPosition));
             isDown = false;
         }
@@ -57,5 +69,6 @@ public class MovingPlatform : MonoBehaviour
         }
 
         transform.position = targetPosition;
+        platformAudioSource.Stop();
     }
 }

@@ -71,6 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9146144600384080944}
+  - component: {fileID: 2275431920374644544}
   - component: {fileID: 588527694533439718}
   m_Layer: 0
   m_Name: wallMov
@@ -97,6 +98,24 @@ Transform:
   - {fileID: 838693397904706810}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2275431920374644544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6427307730993921335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3f04426feb0ee4e8a99d0d6cb0afaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saw: {fileID: 7109545443306799962}
+  startPoint: {fileID: 2866497107751101521}
+  endPoint: {fileID: 838693397904706810}
+  speed: 1.5
+  maxVolumeDistance: 5
+  minVolumeDistance: 20
 --- !u!114 &588527694533439718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +132,8 @@ MonoBehaviour:
   startPoint: {fileID: 2866497107751101521}
   endPoint: {fileID: 838693397904706810}
   speed: 1.5
+  maxVolumeDistance: 5
+  minVolumeDistance: 20
 --- !u!1 &9100370350669603051
 GameObject:
   m_ObjectHideFlags: 0
