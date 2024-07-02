@@ -15,7 +15,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip GroundCrack;
     public AudioClip PressurePlate;
     public AudioClip PlatformMoving;
-
+    public AudioClip CharacterJump;
+    public AudioClip Laser;
+    public AudioClip Electric;
     private void Start()
     {
         musicSource.clip = background;

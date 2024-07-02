@@ -9,8 +9,13 @@ public class Gate : MonoBehaviour
     private Vector3 closedPosition;
     public float transitionDuration = 1.0f; // Duration for the gate to open or close
 
+    AudioManager audioManager;
     private Coroutine currentCoroutine = null;
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     void Start()
     {
         closedPosition = transform.position;
@@ -26,6 +31,7 @@ public class Gate : MonoBehaviour
                 StopCoroutine(currentCoroutine);
             }
             currentCoroutine = StartCoroutine(MoveGate(openPosition));
+            audioManager.PlaySFX(audioManager.WallMoving);
             isOpen = true;
         }
     }
@@ -40,6 +46,7 @@ public class Gate : MonoBehaviour
                 StopCoroutine(currentCoroutine);
             }
             currentCoroutine = StartCoroutine(MoveGate(closedPosition));
+            audioManager.PlaySFX(audioManager.WallMoving);
             isOpen = false;
         }
     }

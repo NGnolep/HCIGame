@@ -8,9 +8,16 @@ public class PlayerOneMovement : MonoBehaviour
 
     public float speed;
     public float jumpForce;
+
+    AudioManager audioManager;
     [SerializeField] bool isJumping;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+    
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -30,6 +37,7 @@ public class PlayerOneMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && !isJumping)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            audioManager.PlaySFX(audioManager.CharacterJump);
             isJumping = true;
         }
     }

@@ -29,7 +29,6 @@ public class NewBehaviourScript : MonoBehaviour
         sawAudioSource.loop = true;
         sawAudioSource.Play();
 
-        // Dapatkan referensi ke kamera utama
         cameraTransform = Camera.main.transform;
     }
 

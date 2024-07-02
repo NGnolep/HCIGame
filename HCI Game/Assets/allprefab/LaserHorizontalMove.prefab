@@ -813,6 +813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6521052763948866663}
+  - component: {fileID: 7413418580961713285}
   - component: {fileID: 2256835544430294715}
   m_Layer: 0
   m_Name: LaserHorizontalMove
@@ -839,6 +840,24 @@ Transform:
   - {fileID: 2284718695184041940}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7413418580961713285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4801170804146290785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86d18bda21399f499db50b009df79d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saw: {fileID: 2266350556877548689}
+  startPoint: {fileID: 5966794191212824991}
+  endPoint: {fileID: 2284718695184041940}
+  speed: 1.5
+  maxVolumeDistance: 5
+  minVolumeDistance: 20
 --- !u!114 &2256835544430294715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,6 +874,8 @@ MonoBehaviour:
   startPoint: {fileID: 5966794191212824991}
   endPoint: {fileID: 2284718695184041940}
   speed: 3
+  maxVolumeDistance: 5
+  minVolumeDistance: 20
 --- !u!1 &6150470134295115018
 GameObject:
   m_ObjectHideFlags: 0
