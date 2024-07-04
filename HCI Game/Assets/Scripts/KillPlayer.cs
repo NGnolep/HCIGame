@@ -8,6 +8,13 @@ public class KillPlayer : MonoBehaviour
     public GameObject player;
     public GameObject gameOverScreen;
     public bool over = false;
+
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     public void gameover()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
@@ -27,6 +34,7 @@ public class KillPlayer : MonoBehaviour
         {
             over = true;
             dead();
+            audioManager.PlaySFX(audioManager.Death);
             gameover();
         }
     }

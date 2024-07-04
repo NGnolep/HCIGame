@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip CharacterJump;
     public AudioClip Laser;
     public AudioClip Electric;
+    public AudioClip Death;
     private void Start()
     {
         musicSource.clip = background;
