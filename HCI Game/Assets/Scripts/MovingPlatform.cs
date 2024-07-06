@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
@@ -7,11 +6,13 @@ public class MovingPlatform : MonoBehaviour
     public bool isDown = false;
     public Vector3 downPosition;
     private Vector3 upPosition;
-    public float transitionDuration = 0.1f; // Duration for the platform to move
+    public float transitionDuration = 0.1f;
 
-    AudioManager audioManager;
+    private AudioManager audioManager;
     private Coroutine currentCoroutine = null;
     private AudioSource platformAudioSource;
+    private float globalVolume = 1f;
+    private const float maxVolume = 0.5f;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class MovingPlatform : MonoBehaviour
         platformAudioSource = gameObject.AddComponent<AudioSource>();
         platformAudioSource.clip = audioManager.PlatformMoving;
         platformAudioSource.loop = true;
+        LoadGlobalVolume();
     }
 
     void Start()
@@ -26,15 +28,27 @@ public class MovingPlatform : MonoBehaviour
         upPosition = transform.position;
     }
 
+    private void LoadGlobalVolume()
+    {
+        if (PlayerPrefs.HasKey("musicVolume"))
+        {
+            globalVolume = PlayerPrefs.GetFloat("musicVolume") * maxVolume;
+        }
+        else
+        {
+            globalVolume = maxVolume;
+        }
+    }
+
     public void MoveDown()
     {
         if (!isDown)
         {
-            Debug.Log("Platform moving down");
             if (currentCoroutine != null)
             {
                 StopCoroutine(currentCoroutine);
             }
+            platformAudioSource.volume = globalVolume;
             platformAudioSource.Play();
             currentCoroutine = StartCoroutine(MovePlatform(downPosition));
             isDown = true;
@@ -45,11 +59,11 @@ public class MovingPlatform : MonoBehaviour
     {
         if (isDown)
         {
-            Debug.Log("Platform moving up");
             if (currentCoroutine != null)
             {
                 StopCoroutine(currentCoroutine);
             }
+            platformAudioSource.volume = globalVolume;
             platformAudioSource.Play();
             currentCoroutine = StartCoroutine(MovePlatform(upPosition));
             isDown = false;
@@ -70,5 +84,10 @@ public class MovingPlatform : MonoBehaviour
 
         transform.position = targetPosition;
         platformAudioSource.Stop();
+    }
+
+    private void Update()
+    {
+        LoadGlobalVolume();
     }
 }

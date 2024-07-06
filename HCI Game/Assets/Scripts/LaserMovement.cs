@@ -7,13 +7,16 @@ public class LaserMovement : MonoBehaviour
     public Transform startPoint;
     public Transform endPoint;
     public float speed = 1.5f;
-    public float maxVolumeDistance = 5f; // Jarak di mana volume mencapai maksimum
-    public float minVolumeDistance = 20f; // Jarak di mana volume mencapai minimum
-    
+    public float maxVolumeDistance = 5f;
+    public float minVolumeDistance = 20f;
+
     private int direction = 1;
     private AudioSource sawAudioSource;
     private AudioManager audioManager;
     private Transform cameraTransform;
+    private bool isMoving = false;
+    private float globalVolume = 1f;
+    private const float maxVolume = 0.5f;
 
     private void Awake()
     {
@@ -27,24 +30,48 @@ public class LaserMovement : MonoBehaviour
 
         sawAudioSource.clip = audioManager.Laser;
         sawAudioSource.loop = true;
-        sawAudioSource.Play();
-
         cameraTransform = Camera.main.transform;
+        LoadGlobalVolume();
+    }
+
+    private void LoadGlobalVolume()
+    {
+        if (PlayerPrefs.HasKey("musicVolume"))
+        {
+            globalVolume = PlayerPrefs.GetFloat("musicVolume") * maxVolume;
+        }
+        else
+        {
+            globalVolume = maxVolume;
+        }
     }
 
     private void Update()
     {
-        AdjustVolumeBasedOnDistance();
-
         Vector2 target = currentMovementTarget();
-
-        saw.position = Vector2.Lerp(saw.position, target, speed * Time.deltaTime);
-
         float distance = (target - (Vector2)saw.position).magnitude;
-        if (distance < 0.1f)
+
+        if (distance > 0.1f)
         {
-            direction *= -1;
+            saw.position = Vector2.Lerp(saw.position, target, speed * Time.deltaTime);
+            if (!isMoving)
+            {
+                sawAudioSource.volume = globalVolume;
+                sawAudioSource.Play();
+                isMoving = true;
+            }
         }
+        else
+        {
+            if (isMoving)
+            {
+                sawAudioSource.Stop();
+                isMoving = false;
+                direction *= -1;
+            }
+        }
+
+        AdjustVolumeBasedOnDistance();
     }
 
     Vector2 currentMovementTarget()
@@ -67,7 +94,7 @@ public class LaserMovement : MonoBehaviour
 
         if (distance < maxVolumeDistance)
         {
-            sawAudioSource.volume = 1f;
+            sawAudioSource.volume = globalVolume;
         }
         else if (distance > minVolumeDistance)
         {
@@ -75,7 +102,7 @@ public class LaserMovement : MonoBehaviour
         }
         else
         {
-            float volume = 1 - ((distance - maxVolumeDistance) / (minVolumeDistance - maxVolumeDistance));
+            float volume = globalVolume * (1 - ((distance - maxVolumeDistance) / (minVolumeDistance - maxVolumeDistance)));
             sawAudioSource.volume = volume;
         }
     }
@@ -87,5 +114,10 @@ public class LaserMovement : MonoBehaviour
             Gizmos.DrawLine(saw.transform.position, startPoint.position);
             Gizmos.DrawLine(saw.transform.position, endPoint.position);
         }
+    }
+
+    private void LateUpdate()
+    {
+        LoadGlobalVolume();
     }
 }

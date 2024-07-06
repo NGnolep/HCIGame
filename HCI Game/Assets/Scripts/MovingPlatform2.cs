@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingPlatform2 : MonoBehaviour
@@ -8,14 +7,16 @@ public class MovingPlatform2 : MonoBehaviour
     public Transform startPoint;
     public Transform endPoint;
     public float speed = 1.5f;
-    public float maxVolumeDistance = 5f; // Jarak di mana volume mencapai maksimum
-    public float minVolumeDistance = 20f; // Jarak di mana volume mencapai minimum
-    
+    public float maxVolumeDistance = 5f;
+    public float minVolumeDistance = 20f;
+
     private int direction = 1;
     private AudioSource sawAudioSource;
     private AudioManager audioManager;
     private Transform cameraTransform;
     private bool isMoving = false;
+    private float globalVolume = 1f;
+    private const float maxVolume = 0.5f;
 
     private void Awake()
     {
@@ -28,9 +29,20 @@ public class MovingPlatform2 : MonoBehaviour
         }
 
         sawAudioSource.clip = audioManager.PlatformMoving;
-
-        // Dapatkan referensi ke kamera utama
         cameraTransform = Camera.main.transform;
+        LoadGlobalVolume();
+    }
+
+    private void LoadGlobalVolume()
+    {
+        if (PlayerPrefs.HasKey("musicVolume"))
+        {
+            globalVolume = PlayerPrefs.GetFloat("musicVolume") * maxVolume;
+        }
+        else
+        {
+            globalVolume = maxVolume;
+        }
     }
 
     private void Update()
@@ -43,6 +55,7 @@ public class MovingPlatform2 : MonoBehaviour
             saw.position = Vector2.Lerp(saw.position, target, speed * Time.deltaTime);
             if (!isMoving)
             {
+                sawAudioSource.volume = globalVolume;
                 sawAudioSource.Play();
                 isMoving = true;
             }
@@ -80,7 +93,7 @@ public class MovingPlatform2 : MonoBehaviour
 
         if (distance < maxVolumeDistance)
         {
-            sawAudioSource.volume = 1f;
+            sawAudioSource.volume = globalVolume;
         }
         else if (distance > minVolumeDistance)
         {
@@ -88,7 +101,7 @@ public class MovingPlatform2 : MonoBehaviour
         }
         else
         {
-            float volume = 1 - ((distance - maxVolumeDistance) / (minVolumeDistance - maxVolumeDistance));
+            float volume = globalVolume * (1 - ((distance - maxVolumeDistance) / (minVolumeDistance - maxVolumeDistance)));
             sawAudioSource.volume = volume;
         }
     }
@@ -100,5 +113,10 @@ public class MovingPlatform2 : MonoBehaviour
             Gizmos.DrawLine(saw.transform.position, startPoint.position);
             Gizmos.DrawLine(saw.transform.position, endPoint.position);
         }
+    }
+
+    private void LateUpdate()
+    {
+        LoadGlobalVolume();
     }
 }
